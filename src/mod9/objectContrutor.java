@@ -28,11 +28,17 @@ public class objectContrutor {
     System.out.println("Data matricula: " + aluno.getDataMatricula());
     System.out.println("Data nascimento: " + aluno.getDataNascimento());
     System.out.println("RGM: " + aluno.getRegistroGeral());
+    
+	System.out.println("----------------------------------------------");
 	
 	classObject aluno2 = new classObject();
+	aluno2.setNome("hellow baby");
+	aluno2.setIdade(999);
+	System.out.println(aluno2.getNome());
+	System.out.println(aluno2.getIdade());
 	
-	classObject aluno3 = new classObject("joao");
-	classObject aluno4 = new classObject("john", 10);
+	//classObject aluno3 = new classObject("joao");
+	//classObject aluno4 = new classObject("john", 10);
 	
 	//classObject aluno5 = new  
 	
