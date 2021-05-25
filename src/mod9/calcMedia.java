@@ -54,7 +54,7 @@ public class calcMedia {
 				return "Aluno aprovado: ";
 				
 			}else {
-				return "Aluno Reprobado";
+				return "Aluno Reprovado";
 			}	
 			
 		}
