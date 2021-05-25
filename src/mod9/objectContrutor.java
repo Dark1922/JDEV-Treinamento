@@ -18,6 +18,18 @@ public class objectContrutor {
    String nomePai = JOptionPane.showInputDialog("Nome de seu pai");
    String nomeEscola = JOptionPane.showInputDialog("Nome de sua instituição");
    
+   String disciplina1 = JOptionPane.showInputDialog("Disciplina 1?");
+	 String nota1 = JOptionPane.showInputDialog("nota1");
+	 
+	 String disciplina2 = JOptionPane.showInputDialog("Disciplina 2?");
+	 String nota2 = JOptionPane.showInputDialog("nota2");
+	 
+	 String disciplina3 = JOptionPane.showInputDialog("Disciplina 3?");
+	 String nota3 = JOptionPane.showInputDialog("nota3");
+	 
+	 String disciplina4 = JOptionPane.showInputDialog("Disciplina 4?");
+	 String nota4 = JOptionPane.showInputDialog("nota4");
+   
 	classObject aluno = new classObject();//crio 1 objeto
 
 	
@@ -32,6 +44,25 @@ public class objectContrutor {
     aluno.setSerieMatriculado(serieMatriculado);
     aluno.setNomePai(nomePai);
     
+	
+    aluno.getDisciplina().setNota1(Double.parseDouble(nota1));//ele recebe uma string e retorna um double
+    aluno.getDisciplina().setNota2(Double.parseDouble(nota2));
+    aluno.getDisciplina().setNota3(Double.parseDouble(nota3));
+    aluno.getDisciplina().setNota4(Double.parseDouble(nota4));
+	//passa a disciplina com os dados de do calculo de media e com as diciplina tb massa
+    aluno.getDisciplina().setDisciplina1(disciplina1);
+    aluno.getDisciplina().setDisciplina2(disciplina2);
+    aluno.getDisciplina().setDisciplina3(disciplina3);
+    aluno.getDisciplina().setDisciplina4(disciplina4);
+	
+	System.out.println(aluno.toString());
+	System.out.println("Média da nota é: " + aluno.getMedia());
+	System.out.println("Resultado: " + (aluno.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
+	System.out.println("Resultado metodo1: " + aluno.getAlunoAprovado1());
+    
+	
+	
+	
    /* //System.out.println("Nome é: " + aluno.getNome());
     //System.out.println("Idade: " + aluno.getIdade());
     //System.out.println("Nome da facu: " + aluno.getNomeEscola());
@@ -57,10 +88,9 @@ public class objectContrutor {
 	//classObject aluno5 = new  
 		
 
-		System.out.println(aluno.toString());//descrição do objeto ná memoria
+		//System.out.println(aluno.toString());//descrição do objeto ná memoria
 		
-		//aluno = new classObject();
-		//System.out.println(aluno);*/
+
 	  
 	}
 }

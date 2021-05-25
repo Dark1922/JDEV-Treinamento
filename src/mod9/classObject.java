@@ -13,7 +13,25 @@ public class classObject {
 		private String nomeEscola;
 		private String serieMatriculado;
 		
-	   public classObject() {
+		private calcMedia disciplina  = new calcMedia(); //instancia a classe de nota e disciplina aqui
+		
+		public void setDisciplina(calcMedia disciplina) {
+			this.disciplina = disciplina;
+		}
+		
+		public calcMedia getDisciplina() {
+			return disciplina;
+		}
+		
+	   @Override
+		public String toString() {
+			return "classObject [nome=" + nome + ", idade=" + idade + ", dataNascimento=" + dataNascimento
+					+ ", registroGeral=" + registroGeral + ", numeroCpf=" + numeroCpf + ", nomeMae=" + nomeMae
+					+ ", nomePai=" + nomePai + ", dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola
+					+ ", serieMatriculado=" + serieMatriculado + ", disciplina=" + disciplina + "]";
+		}
+
+	public classObject() {
 		   //cria os dados na memoria - sendo padrão do java
 	   }
 	   public classObject(String nomePadrao) {
@@ -91,13 +109,6 @@ public class classObject {
 	   }
 
 		@Override
-		public String toString() {
-			return "classObject [nome=" + getNome() + ", idade=" + getIdade() + ", dataNascimento=" + dataNascimento
-					+ ", registroGeral=" + registroGeral + ", numeroCpf=" + numeroCpf + ", nomeMae=" + nomeMae
-					+ ", nomePai=" + nomePai + ", dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola
-					+ ", serieMatriculado=" + serieMatriculado + "]";
-		}
-		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
@@ -121,5 +132,32 @@ public class classObject {
 			return true;
 		}
 		
+		public double getMedia() {
+return (disciplina.getNota1() + disciplina.getNota2() +  disciplina.getNota3() + disciplina.getNota4()) /4;
+			
+		}
+		//Método true para aprovado false para reprovado com base na nota
+				public boolean getAlunoAprovado() {
+					double media = this.getMedia();
+					if (media >= 70) {
+						return true;
+					}else {
+						return false;
+					}
+				}
+				
+				//método que retorna mensagem pra aprovado e reprovado com base na nota
+				public String getAlunoAprovado1() {
+					double media = this.getMedia();	
+						
+					if (media >= 70) {
+						return "Aluno aprovado";
+						
+					}else {
+						return "Aluno Reprovado";
+					}	
+					
+				}
 		
-}
+		
+}   
