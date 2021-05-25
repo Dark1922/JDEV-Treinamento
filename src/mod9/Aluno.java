@@ -10,6 +10,8 @@ public class Aluno {
 		calc.setNota3(77);
 		calc.setNota4(60);
 		System.out.println("Média da nota é: " + calc.getMedia());
+		System.out.println("Resultado: " + (calc.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
+		System.out.println("Resultado metodo1: " + calc.getAlunoAprovado1());
 	}
 
 }

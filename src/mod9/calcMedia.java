@@ -36,6 +36,26 @@ public class calcMedia {
 			return (nota1 + nota2 + nota3 + nota4) /4;
 			
 		}
-	
-
+		//Método true para aprovado false para reprovado com base na nota
+		public boolean getAlunoAprovado() {
+			double media = this.getMedia();
+			if (media >= 70) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		//método que retorna mensagem pra aprovado e reprovado com base na nota
+		public String getAlunoAprovado1() {
+			double media = this.getMedia();	
+				
+			if (media >= 70) {
+				return "Aluno aprovado: ";
+				
+			}else {
+				return "Aluno Reprobado";
+			}	
+			
+		}
 }
