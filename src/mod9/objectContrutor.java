@@ -7,11 +7,22 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import classjava.constante.StatusAluno;
-import mod9.classObject;
+
 
 public class objectContrutor {
 
 	public static void main(String[] args) {
+		
+		String login = JOptionPane.showInputDialog("Informe o login");
+		String senha = JOptionPane.showInputDialog("Informe a senha");
+		
+		if (login.equalsIgnoreCase("admin") && 
+		 senha.equalsIgnoreCase("admin123")) {
+			
+		
+		
+		
+		
 		// instaciação de uma lista para alunos que está em classobject
 		List<classObject> alunos = new ArrayList<classObject>();
 		
@@ -75,6 +86,7 @@ public class objectContrutor {
 			}
 
 			alunos.add(aluno); // vai adicionar o aluno para a lista de array for
+			
 			//INICIA OS VALORES DO MAPS.PUSH COM A ARRAY LIST QUE CRIAMOS
 			//AI AGENTE PASSA NOSSO METODO ESTATICO , E A ARRAY DE LISTA QUE CRIAMOSA ACIMA SAQUEI
 			//O 1 É A KEY INICIALIZADO , E O 2 COM NEW É À LISTA  VAZIA PARA AGENTE PODER USAR O .ADD
@@ -125,12 +137,14 @@ public class objectContrutor {
 			System.out.println("Aluno: " + aluno.getNome()  +" Resultado = " +aluno.getAlunoAprovado1() + " Com média de = " + aluno.getMedia() + " Na disciplina = " + disciplina.getDisciplina());
 			}
 		}
+		
+		}//chave do login pra executar o código
 
-	   }
+	   }//método main
 		
-		
+	
 			
-		}
+		}//classe
 		 
 
 	
