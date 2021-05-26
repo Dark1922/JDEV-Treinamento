@@ -43,7 +43,15 @@ public class objectContrutor {
 
 			aluno.getDisciplinas().add(disciplina);// adiciona pra lista add
 		} // ele recebe um double ent Double.valueOf
+		
+		int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguem disciplina?");
 
+		if (escolha == 0) {//decidiu remover alguma disciplina
+			String disciplinaRemover = JOptionPane.showInputDialog("Qual a disciplina 1, 2, 3 ,4 ?");
+			aluno.getDisciplinas().remove(Integer.valueOf(disciplinaRemover).intValue() -1);//remove a posição que escolheu
+			
+		}
+		
 		System.out.println(aluno.toString());
 		System.out.println("Média da nota é: " + aluno.getMedia());
 		System.out.println("Resultado: " + (aluno.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
