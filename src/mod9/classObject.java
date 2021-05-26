@@ -4,6 +4,8 @@ package mod9;
 import java.util.ArrayList;
 import java.util.List;
 
+import classjava.constante.StatusAluno;
+
 public class classObject {
 
 	private String nome; // nome é um texto ent string
@@ -174,7 +176,7 @@ public class classObject {
 	}
 
 	// Método true para aprovado false para reprovado com base na nota
-	public boolean getAlunoAprovado() {
+	/*public boolean getAlunoAprovado() {
 		double media = this.getMedia();
 		if (media >= 70) {
 			return true;
@@ -182,16 +184,18 @@ public class classObject {
 			return false;
 		}
 	}
-
+*/
 	// método que retorna mensagem pra aprovado e reprovado com base na nota
 	public String getAlunoAprovado1() {
 		double media = this.getMedia();
 
-		if (media >= 70) {
-			return "Aluno aprovado";
-
-		} else {
-			return "Aluno Reprovado";
+		if (media >= 50) {
+			if (media >= 70) {
+			return StatusAluno.APROVADO; //vai retorna as mensagem que foi definida lá
+			}
+		     return StatusAluno.RECUPERACAO;
+		}else {
+			return StatusAluno.REPROVADO;
 		}
 
 	}
