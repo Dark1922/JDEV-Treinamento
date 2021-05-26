@@ -1,6 +1,7 @@
 package mod9;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -13,9 +14,11 @@ public class objectContrutor {
 	public static void main(String[] args) {
 		// instaciação de uma lista para alunos que está em classobject
 		List<classObject> alunos = new ArrayList<classObject>();
-		List<classObject> alunosAprovados = new ArrayList<classObject>();
-		List<classObject> alunosRecuperacao = new ArrayList<classObject>();
-		List<classObject> alunosReprovados = new ArrayList<classObject>();
+		
+		HashMap<String, List<classObject>> maps = new HashMap<String, List<classObject>>();
+		//INTACIAMOS O MAPS AQUI E FIZEMOS O MÉTODO DELE ABAIXO
+		//mapa que dentro dele tamos fazendo uma referencia todos alunos em recuperação vai ter uma lista dentro
+		//o mesmo para aprovados e reprovados String tipo os aluno e a List que vai ter ele dentro
 
 		for (int qtd = 1; qtd <= 4; qtd++) {//vamos ter 5 alunos
 
@@ -72,33 +75,44 @@ public class objectContrutor {
 			}
 
 			alunos.add(aluno); // vai adicionar o aluno para a lista de array for
+			//INICIA OS VALORES DO MAPS.PUSH COM A ARRAY LIST QUE CRIAMOS
+			//AI AGENTE PASSA NOSSO METODO ESTATICO , E A ARRAY DE LISTA QUE CRIAMOSA ACIMA SAQUEI
+			//O 1 É A KEY INICIALIZADO , E O 2 COM NEW É À LISTA  VAZIA PARA AGENTE PODER USAR O .ADD
+			//LA DENTRO DAS CONDIÇÕES IF E ELSE PRA ADICIONAR AO ALUNO QUE É A LISTA DE ALUNOS
+			//QUE É UMA LISTA VAZIA SE FOR PREENCHIDA VAI PRA LISTA DO ALUNOS ADICIONAR LÁ QUE É ALUNO
+			//PEGA A CHAVE DOS APROVADOS/RECUPERACAO/REPROVADOS QUE FORAM PASSADOS  E RETORNA A LISA DOS ALUNOS
+			//PRO ADD(ALUNO); E ADICIONA O MESMO PRA TODOS, E AI AGENTE PEGA O MAPA ALI DO LADO DO 
+			//EUQLASIGNORECASE DO LADO DELE AGENTE MASSA O MAPS KEY A CHAVE DO ALUNO APROVADO RECUPERADO REPROVADO
+			//E ASSIM PRA TODOS
+			maps.put(StatusAluno.APROVADO, new ArrayList<classObject>());
+			maps.put(StatusAluno.RECUPERACAO, new ArrayList<classObject>());
+			maps.put(StatusAluno.REPROVADO, new ArrayList<classObject>());
+			
 		}
-		for (classObject aluno: alunos) {//SEPAREI EM LISTAS OS ALUNOS APROVADOS/REPROVADOS..
+		for (classObject aluno: alunos) {//SEPAREI EM LISTAS OS ALUNOS APROVADOS/REPROVADOS/RECUPERACAO
 			
 			if(aluno.getAlunoAprovado1().equalsIgnoreCase(StatusAluno.APROVADO)) {
-				//se o aluno qualignoteCase ignorar as pronuncias for igual a aprovado
-				alunosAprovados.add(aluno);//se  der que os aluno tá  aprovado , vai trazer
-				//pra lista de alunosAprovados que fizemos
-				
+		       maps.get(StatusAluno.APROVADO).add(aluno);//vai pegar a chave key do put de cimae lista aluno
+			
 			}else  //se não se
 				if(aluno.getAlunoAprovado1().equalsIgnoreCase(StatusAluno.RECUPERACAO) ) {
-					alunosRecuperacao.add(aluno);
+					maps.get(StatusAluno.RECUPERACAO).add(aluno);
 					
 				}else
 					if(aluno.getAlunoAprovado1().equalsIgnoreCase(StatusAluno.REPROVADO)) {
-					alunosReprovados.add(aluno);
+						maps.get(StatusAluno.REPROVADO).add(aluno);
 				}   
 			
 		}
 		System.out.println("---------------Lista dos Aprovados--------------");
-		for (classObject aluno: alunosAprovados) {
+		for (classObject aluno: maps.get(StatusAluno.APROVADO)) {
 			for (Disciplina disciplina : aluno.getDisciplinas()) {
 			System.out.println("Aluno: " + aluno.getNome()  +" Resultado = " +aluno.getAlunoAprovado1() + " Com média de = " + aluno.getMedia() + " Na disciplina = " + disciplina.getDisciplina());
 			}
 			
 		}
 		System.out.println("---------------Lista dos de Recuperação--------------");
-		for (classObject aluno: alunosRecuperacao) {
+		for (classObject aluno: maps.get(StatusAluno.RECUPERACAO)) {
 			for (Disciplina disciplina : aluno.getDisciplinas()) {
 				System.out.println("Aluno: " + aluno.getNome()  +" Resultado = " +aluno.getAlunoAprovado1() + " Com média de = " + aluno.getMedia() + " Na disciplina = " + disciplina.getDisciplina());
 			}
@@ -106,7 +120,7 @@ public class objectContrutor {
 		
 		}
 		System.out.println("---------------Lista dos Reprovados--------------");
-		for (classObject aluno: alunosReprovados) {
+		for (classObject aluno: maps.get(StatusAluno.REPROVADO)) {
 			for (Disciplina disciplina : aluno.getDisciplinas()) {
 			System.out.println("Aluno: " + aluno.getNome()  +" Resultado = " +aluno.getAlunoAprovado1() + " Com média de = " + aluno.getMedia() + " Na disciplina = " + disciplina.getDisciplina());
 			}
