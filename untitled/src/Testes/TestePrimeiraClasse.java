@@ -1,6 +1,9 @@
-package Heranca;
+package Testes;
 import ClassesAuxiliares.FuncaoAutenticacao;
 
+import Heranca.Aluno;
+import Heranca.Diretor;
+import Heranca.Disciplina;
 import Status.StatusALuno;
 
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class TestePrimeiraClasse {
 
         //instaciação de permição passando pro secretário login e senha
 
-        if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {//vou travar o contrato para autorizar somente
+         if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {//vou travar o contrato para autorizar somente
           // quem realmente tem o contrato 100% legitimo        quem realmente
 
           // instaciação de uma lista para alunos que está em classobject
@@ -31,11 +34,12 @@ public class TestePrimeiraClasse {
           //mapa que dentro dele tamos fazendo uma referencia todos alunos em recuperação vai ter uma lista dentro
           //o mesmo para aprovados e reprovados String tipo os aluno e a List que vai ter ele dentro
 
-          for (int qtd = 1; qtd <= 1; qtd++) {//vamos ter 5 alunos
+          for (int qtd = 1; qtd <= 2; qtd++) {//vamos ter 5 alunos
 
             String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + qtd + " ?");
+            String idade = JOptionPane.showInputDialog("Digite sua idade");
             /*
-             * String idade = JOptionPane.showInputDialog("Digite sua idade"); String
+             String
              * dataNascimento = JOptionPane.showInputDialog("Data de nascimento"); String
              * dataMatricula = JOptionPane.showInputDialog("Data matricula"); String
              * numeroCpf = JOptionPane.showInputDialog("numero cpf"); String registroGeral =
@@ -49,10 +53,11 @@ public class TestePrimeiraClasse {
             Aluno aluno = new Aluno();// crio 1 objeto
 
             aluno.setNome(nome);
+            aluno.setIdade(Integer.valueOf(idade));// vai transforma idade em um numero
             /*
              * aluno.setDataMatricula(dataMatricula);
              * aluno.setDataNascimento(dataNascimento);
-             * aluno.setIdade(Integer.valueOf(idade));// vai transforma idade em um numero
+
              * inteiro aluno.setNomeEscola(nomeEscola); aluno.setNomeMae(nomeMae);
              * aluno.setNumeroCpf(numeroCpf); aluno.setRegistroGeral(registroGeral);
              * aluno.setSerieMatriculado(serieMatriculado); aluno.setNomePai(nomePai);
@@ -87,15 +92,7 @@ public class TestePrimeiraClasse {
 
             alunos.add(aluno); // vai adicionar o aluno para a lista de array for
 
-            //INICIA OS VALORES DO MAPS.PUSH COM A ARRAY LIST QUE CRIAMOS
-            //AI AGENTE PASSA NOSSO METODO ESTATICO , E A ARRAY DE LISTA QUE CRIAMOSA ACIMA SAQUEI
-            //O 1 É A KEY INICIALIZADO , E O 2 COM NEW É À LISTA  VAZIA PARA AGENTE PODER USAR O .ADD
-            //LA DENTRO DAS CONDIÇÕES IF E ELSE PRA ADICIONAR AO ALUNO QUE É A LISTA DE ALUNOS
-            //QUE É UMA LISTA VAZIA SE FOR PREENCHIDA VAI PRA LISTA DO ALUNOS ADICIONAR LÁ QUE É ALUNO
-            //PEGA A CHAVE DOS APROVADOS/RECUPERACAO/REPROVADOS QUE FORAM PASSADOS  E RETORNA A LISA DOS ALUNOS
-            //PRO ADD(ALUNO); E ADICIONA O MESMO PRA TODOS, E AI AGENTE PEGA O MAPA ALI DO LADO DO
-            //EUQLASIGNORECASE DO LADO DELE AGENTE MASSA O MAPS KEY A CHAVE DO ALUNO APROVADO RECUPERADO REPROVADO
-            //E ASSIM PRA TODOS
+
             maps.put(StatusALuno.APROVADO, new ArrayList<Aluno>());
             maps.put(StatusALuno.RECUPERACAO, new ArrayList<Aluno>());
             maps.put(StatusALuno.REPROVADO, new ArrayList<Aluno>());
@@ -141,13 +138,13 @@ public class TestePrimeiraClasse {
           JOptionPane.showMessageDialog(null, "Acesso não permitido");
         }
 
-      }catch (Exception e) {
+      } catch (Exception e) {
         StringBuilder saida = new StringBuilder();
         e.printStackTrace();  //imprimi erro no console java
         //Mensagem do erro
         System.out.println("Mensagem: " + e.getMessage());
 
-        for(int i = 0; i < e.getStackTrace().length; i++) {
+        for (int i = 0; i < e.getStackTrace().length; i++) {
           saida.append("\nClasse de erro " + e.getStackTrace()[i].getClassName());
           saida.append("\nMétodo de erro " + e.getStackTrace()[i].getMethodName());
           saida.append("\nLinha de erro " + e.getStackTrace()[i].getLineNumber());
@@ -156,13 +153,14 @@ public class TestePrimeiraClasse {
           //pecorre toda lista do array . lenght o maximo que tiver
           //pra mostrar os erros, pecorre pela posição i
         }
-
-
         JOptionPane.showMessageDialog(null, "Erro ao processar notas" + saida.toString());
+      }finally {//sempre é executado ocorrendo erros ou não
+         JOptionPane.showMessageDialog(null, "Obrigado por aprender java comigo");
       }
 
-    }//método main
 
+
+    }//método main
 
 
   }//classe
@@ -170,5 +168,5 @@ public class TestePrimeiraClasse {
 
 
 
-
+  
 

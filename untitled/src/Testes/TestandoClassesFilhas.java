@@ -1,4 +1,8 @@
-package Heranca;
+package Testes;
+
+import Heranca.Aluno;
+import Heranca.Diretor;
+import Heranca.Secretario;
 
 public class TestandoClassesFilhas {
   public static void main(String[] args) {
