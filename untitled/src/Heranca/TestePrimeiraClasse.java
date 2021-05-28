@@ -142,8 +142,23 @@ public class TestePrimeiraClasse {
         }
 
       }catch (Exception e) {
+        StringBuilder saida = new StringBuilder();
         e.printStackTrace();  //imprimi erro no console java
-        JOptionPane.showMessageDialog(null, "Erro ao processar notas");
+        //Mensagem do erro
+        System.out.println("Mensagem: " + e.getMessage());
+
+        for(int i = 0; i < e.getStackTrace().length; i++) {
+          saida.append("\nClasse de erro " + e.getStackTrace()[i].getClassName());
+          saida.append("\nMétodo de erro " + e.getStackTrace()[i].getMethodName());
+          saida.append("\nLinha de erro " + e.getStackTrace()[i].getLineNumber());
+          saida.append("\nLinha de erro " + e.getClass().getName());
+
+          //pecorre toda lista do array . lenght o maximo que tiver
+          //pra mostrar os erros, pecorre pela posição i
+        }
+
+
+        JOptionPane.showMessageDialog(null, "Erro ao processar notas" + saida.toString());
       }
 
     }//método main
