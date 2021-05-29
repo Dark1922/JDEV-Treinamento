@@ -9,7 +9,7 @@ public class ArrayVetor {
      String posicoes = JOptionPane.showInputDialog("Quantas posições deve ter o Array");
 
       //vai transforma string em numeros inteiros
-     double[] notas = new double[Integer.parseInt(posicoes)]; 
+     double[] notas = new double[Integer.parseInt(posicoes)];
 
   for (int i = 0; i < notas.length; i++) {
      String valor = JOptionPane.showInputDialog("Qual valor da posição = " + i);
@@ -17,6 +17,7 @@ public class ArrayVetor {
     //e pela quantidade de array que temos , passar o valor pra todas que declaramos
 
   }
+
 
 //vai pecorrer o array até ser menor que o tamanho do array própio + dinamico
    for(int i = 0; i < notas.length; i ++) {
