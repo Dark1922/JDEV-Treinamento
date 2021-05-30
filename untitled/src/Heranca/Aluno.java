@@ -145,13 +145,10 @@ public class Aluno extends Pessoa {//se extende a pessoa
       // pega a disciplina e instancia uma classe e aponta a lista da disciplina
       for (Disciplina disciplina : disciplinas) {
          // vai pecorrer as listas e vai soma as soma das nota da disciplina
-         somaNotas += disciplina.getNota();//pega as nota da lista disciplina
+         somaNotas += disciplina.getMediaNotas();//pega as nota da lista disciplina
       }
       return somaNotas / disciplinas.size();
-//vai dividir as notas pela quantidade de objetos de qnts disciplina tem
-      //nessa lista como temos 4 disciplinas vai dividir por 4
-      // pra ficar de uma forma mais dinamiza e se almentar
-      //não ter que ficar almentado pra /4 /5 e assim por diante massa
+
    }
 
    public List<Disciplina> getDisciplinas() {
