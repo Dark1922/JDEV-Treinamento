@@ -11,47 +11,18 @@ public class TelaTimeThread extends JDialog {
 //JDialog freamework do java pa criar algo com desktop
   private JPanel jpanel = new JPanel(new GridBagLayout());//painel de componentes
 
-  private JLabel descricaoHora = new JLabel("time thread1");
+  private JLabel descricaoHora = new JLabel("Nome");
   private JTextField mostraTempo = new JTextField();
 
-  private JLabel descricaoHora2 = new JLabel("time thread2"); //titulo para o texto abaixo
+  private JLabel descricaoHora2 = new JLabel("Email"); //titulo para o texto abaixo
   private JTextField mostraTempo2 = new JTextField(); //escrever o texto
 
-  private JButton jButton = new JButton("Start"); //button
+  private JButton jButton = new JButton("Add Lista"); //button
 
   private JButton jButton2 = new JButton("Stop"); //button
 
-  private Runnable thread1 = new Runnable() {
-    @Override
-    public void run() {
-     while (true) {
-       mostraTempo.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
-       try {
-         Thread.sleep(1000);//pausa de 1 segundo a cada interação pra n travar
-       }catch (InterruptedException e) {
-           e.printStackTrace();
-       }
-     }
-    }
-  };
-
-  private Thread thread1Time; //instacia ele encima pra ser acessivel das área abaixo
-
-  private Runnable thread2 = new Runnable() {
-    @Override
-    public void run() {
-      while (true) {
-        mostraTempo2.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
-        try {
-          Thread.sleep(1000);//pausa de 1 segundo a cada interação pra n travar
-        }catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-  };
-
-  private Thread thread2Time;
+  private ImplementacaoFilhaThread fila = new ImplementacaoFilhaThread();//qnd a tela inicia vai ter a fila
+  //instanciado dentro
 
   //construtor
   public TelaTimeThread() {//executa oque tiver dentro na abertura de execução
@@ -77,7 +48,7 @@ public class TelaTimeThread extends JDialog {
 
     mostraTempo.setPreferredSize(new Dimension(200, 25));
     gridBagConstraints.gridy ++; //adiciona uma posição no painel pro elemento fica embaixo dele
-    mostraTempo.setEditable(false); //não deixa o campo editavel para ecrevel dentro dele
+
     jpanel.add(mostraTempo, gridBagConstraints);
 
     descricaoHora2.setPreferredSize(new Dimension(200, 25));
@@ -86,7 +57,7 @@ public class TelaTimeThread extends JDialog {
 
     mostraTempo2.setPreferredSize(new Dimension(200, 25));
     gridBagConstraints.gridy ++; //adiciona uma posição no painel pro elemento fica embaixo dele
-    mostraTempo2.setEditable(false);
+
     jpanel.add(mostraTempo2, gridBagConstraints);//gerenciado de layout grid
 
     //------------------------------------------------------------------------------------------------------------------
@@ -103,23 +74,34 @@ public class TelaTimeThread extends JDialog {
     jButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) { //executa o clique no button
-         thread1Time = new Thread(thread1); //passa o runnable, thread1 que é o Thread instaciado os dois
-        //que vai ficar executando nossa data com nosso campo de texto
-        thread1Time.start();//qnd der esse start ele vai ficar executando por trás dos panos esse run colocando as data
-        thread2Time = new Thread(thread2); //passa o runnable, thread1 que é o Thread instaciado os dois
-        //que vai ficar executando nossa data com nosso campo de texto
-        thread2Time.start();//qnd der esse start ele vai ficar executando por trás dos panos esse run colocando as data
+
+        if (fila == null) { //se clicar no stop e ela fica null
+          fila = new ImplementacaoFilhaThread(); //iniciar um novo objeto
+          fila.start(); //dar um start na fila
+
+        }
+
+        for(int i = 0; i < 100 ; i++) { //simulando 100 envios em massa
+
+        ObjetoFilaThread filaThread = new ObjetoFilaThread();
+        filaThread.setNome(mostraTempo.getText());
+        filaThread.setEmail(mostraTempo2.getText() + " - "  + (i + 1));
+
+       fila.add(filaThread);
+        }
       }
     });
 
     jButton2.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        thread1Time.stop(); //pro button stop parar o relogio
-        thread2Time.stop(); //pro button stop parar o relogio
+           fila.stop();
+           fila = null; //stop no thread e mata esse objeto
       }
     });
 
+
+    fila.start();
     add(jpanel, BorderLayout.WEST);//adicionando o painel
      //sempre sera o último comando executa os comando de cima primeiro
     setVisible(true);//torna a tela visivel para o usuario
