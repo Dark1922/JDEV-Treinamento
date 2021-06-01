@@ -106,19 +106,6 @@ public class TelaTimeThread extends JDialog {
          thread1Time = new Thread(thread1); //passa o runnable, thread1 que é o Thread instaciado os dois
         //que vai ficar executando nossa data com nosso campo de texto
         thread1Time.start();//qnd der esse start ele vai ficar executando por trás dos panos esse run colocando as data
-      }
-    });
-
-    jButton2.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        thread1Time.stop(); //pro button stop parar o relogio
-      }
-    });
-
-    jButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) { //executa o clique no button
         thread2Time = new Thread(thread2); //passa o runnable, thread1 que é o Thread instaciado os dois
         //que vai ficar executando nossa data com nosso campo de texto
         thread2Time.start();//qnd der esse start ele vai ficar executando por trás dos panos esse run colocando as data
@@ -128,11 +115,10 @@ public class TelaTimeThread extends JDialog {
     jButton2.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        thread1Time.stop(); //pro button stop parar o relogio
         thread2Time.stop(); //pro button stop parar o relogio
       }
     });
-
-
 
     add(jpanel, BorderLayout.WEST);//adicionando o painel
      //sempre sera o último comando executa os comando de cima primeiro
