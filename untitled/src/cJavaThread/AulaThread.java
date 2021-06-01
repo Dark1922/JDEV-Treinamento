@@ -38,7 +38,6 @@ public class AulaThread {
     }
   };
 
-
   private static Runnable thread1 = new Runnable() {
     @Override
     public void run() {
