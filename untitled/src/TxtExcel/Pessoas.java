@@ -7,6 +7,15 @@ public class Pessoas {
 
   private int idade;
 
+  @Override
+  public String toString() {
+    return "Pessoas {" +
+          "nome= '" + nome + '\'' +
+          ", email= '" + email + '\'' +
+          ", idade= " + idade +
+          '}';
+  }
+
   public String getNome() {
     return nome;
   }

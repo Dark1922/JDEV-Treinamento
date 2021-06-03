@@ -30,7 +30,7 @@ public class Arquivos {
     pessoas.add(pessoa2);
     pessoas.add(pessoa3);
 
-    File arquivo = new File("C:\\Users\\DarkJohn\\IdeaProjects\\untitled\\src\\TxtExcel\\arquivo.txt");
+    File arquivo = new File("C:\\Users\\DarkJohn\\IdeaProjects\\untitled\\src\\TxtExcel\\arquivo.csv");
 
     if(arquivo.exists()) { //se arquivo não existe vai criar um novo arquivo
       arquivo.createNewFile();
