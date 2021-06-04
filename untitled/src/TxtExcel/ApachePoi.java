@@ -35,11 +35,17 @@ public class ApachePoi {
     pessoa3.setIdade(33);
     pessoa3.setNome("jubileu");
 
+    Pessoas pessoa4 = new Pessoas();
+    pessoa4.setEmail("pessoa4@gmail.com");
+    pessoa4.setIdade(29);
+    pessoa4.setNome("leticia");
+
     //instacia uma lista pode vir do banco de dados ou qualquer fonte de dados
     List<Pessoas> pessoas = new ArrayList<Pessoas>(); //fazendo uma lista da classe Pessoas
     pessoas.add(pessoa1); //adicionando pra lista
     pessoas.add(pessoa2);
     pessoas.add(pessoa3);
+    pessoas.add(pessoa4);
 
     HSSFWorkbook hssfWorkbook = new HSSFWorkbook();//vai ser usado para escrever a planilha
     //criar a planilha aqui
