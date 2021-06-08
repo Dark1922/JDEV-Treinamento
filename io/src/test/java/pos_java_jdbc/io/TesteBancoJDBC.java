@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import conexao.jdbc.SingleConnection;
 import dao.UserPosDao;
+import model.BeanUserFone;
 import model.Telefone;
 import model.Userposjava;
 
@@ -51,6 +52,20 @@ public class TesteBancoJDBC {
 		} 
 	}
 	@Test
+	public void testeCarregaFonesUser() { 
+		UserPosDao dao = new UserPosDao(); //precisa do dao instaciado
+		 
+		List<BeanUserFone> beanUserFones  = dao.listaUserFone(6L);
+		for(BeanUserFone beanUserFone : beanUserFones) {
+			System.out.println(beanUserFone);
+			System.out.println(beanUserFone.getEmail());
+			 
+			System.out.println("------------------------"); 
+			
+			
+		} 
+	}
+	@Test
 	public void initAtualizar() {
 		try {
 			
@@ -78,12 +93,13 @@ public class TesteBancoJDBC {
 	@Test
 	public void testInsertTelefone() { 
 		Telefone telefone = new Telefone(); //objeto telefone instaciado
-		telefone.setNumero("(87)983428561");
-		telefone.setTipo("celular");
-		telefone.setUsuario(4L);
+		telefone.setNumero("(61)9321428561");
+		telefone.setTipo("telefone2");
+		telefone.setUsuario(5L);
 		
 		UserPosDao dao = new UserPosDao();
 		dao.salvarTelefone(telefone);//método de salvar telefone que criamos
 		
-	}
+	} 
+	
 }
