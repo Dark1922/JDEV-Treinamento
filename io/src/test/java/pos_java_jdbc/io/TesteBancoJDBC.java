@@ -96,10 +96,15 @@ public class TesteBancoJDBC {
 		telefone.setNumero("(61)9321428561");
 		telefone.setTipo("telefone2");
 		telefone.setUsuario(5L);
-		
+		 
 		UserPosDao dao = new UserPosDao();
 		dao.salvarTelefone(telefone);//método de salvar telefone que criamos
 		
 	} 
+	@Test 
+	public void testDeleteUserFone() {
+		UserPosDao dao = new UserPosDao();
+		dao.deleteFonesPorUser(6L);
+	}
 	
 }
