@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import conexao.jdbc.SingleConnection;
 import dao.UserPosDao;
+import model.Telefone;
 import model.Userposjava;
 
 
@@ -16,9 +17,8 @@ public class TesteBancoJDBC {
 		UserPosDao userPosDAO = new UserPosDao(); //instaci o nosso dao
 		Userposjava userposjava = new Userposjava();
 		
-		userposjava.setId(4L);
-		userposjava.setNome("Maria luiza");
-		userposjava.setEmail("emailtest@gmail.com");
+		userposjava.setNome("testesemid"); 
+		userposjava.setEmail("emailtestID@gmail.com");
 		
 		userPosDAO.salvar(userposjava);//passo os dados fixos ficticios que botamos no userposdao
 		//e salva no userposjava
@@ -65,5 +65,25 @@ public class TesteBancoJDBC {
 			e.printStackTrace();
 		}
 	}
-
+	@Test
+	public void initDeletar() {
+		try {
+			UserPosDao dao = new UserPosDao();
+			dao.deletar(5L);
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
+	}
+   
+	@Test
+	public void testInsertTelefone() { 
+		Telefone telefone = new Telefone(); //objeto telefone instaciado
+		telefone.setNumero("(87)983428561");
+		telefone.setTipo("celular");
+		telefone.setUsuario(4L);
+		
+		UserPosDao dao = new UserPosDao();
+		dao.salvarTelefone(telefone);//método de salvar telefone que criamos
+		
+	}
 }

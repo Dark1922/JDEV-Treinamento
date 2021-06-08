@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conexao.jdbc.SingleConnection;
+import model.Telefone;
 import model.Userposjava;
 
 public class UserPosDao {
@@ -19,15 +20,14 @@ public class UserPosDao {
 	}
 	public void salvar(Userposjava userposjava) {
 		try {
-		String sql = "insert into userposjava (id, nome, email) values (?, ?, ?)"; 	
+		String sql = "insert into userposjava (nome, email) values (?, ?)"; 	
 		PreparedStatement insert =  connection.prepareStatement(sql);
-		insert.setLong(1, userposjava.getId());
-		insert.setString(2, userposjava.getNome());
-		insert.setString(3,  userposjava.getEmail());
+		insert.setString(1, userposjava.getNome());
+		insert.setString(2,  userposjava.getEmail());
 		insert.execute();
 		connection.commit(); //salva no banco
 		
-		}catch(Exception e) {	
+		}catch(Exception e) {	 
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {
@@ -38,6 +38,29 @@ public class UserPosDao {
 			
 		}
 	}
+	
+	public void salvarTelefone(Telefone telefone) {
+		try {
+			String sql = "INSERT INTO telefoneuser(numero, tipo, usuariopessoa) VALUES(?,?,?)";
+			PreparedStatement statment = connection.prepareStatement(sql);
+			statment.setString(1, telefone.getNumero());//numero 1 parametro pega o getnumero
+			statment.setString(2, telefone.getTipo());
+			statment.setLong(3, telefone.getUsuario());//id do usuario
+			statment.execute();
+			connection.commit(); //telefoen feito
+			
+			
+		}catch(Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+			
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+	
 	//pega o sql prepara ele  ai agente passa os parametros  pela posição do id nome e email 1 2 3
     public List<Userposjava> listar() throws Exception{
     	List<Userposjava> list  = new ArrayList<Userposjava>();
@@ -95,5 +118,23 @@ public class UserPosDao {
 			} 
     		e.printStackTrace();
     	}
+    }
+    public void deletar(Long id) {
+    	try {
+    		String sql = "delete from userposjava where id = " + id;
+    		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    		preparedStatement.execute(); //prepara ele e executa vai deletar pelo id
+    		connection.commit();
+    	}catch(Exception e) {
+    		try {
+				connection.rollback();
+				 
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+    		e.printStackTrace(); 
+    	}
+    	
     }
 }
